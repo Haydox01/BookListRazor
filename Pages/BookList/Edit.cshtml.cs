@@ -24,10 +24,11 @@ namespace BookListRazor.Pages.BookList
         {
             if(ModelState.IsValid)
             {
-                var book = await db.Book.FindAsync(Book.Id);
-                book.Name = Book.Name;
-                book.Author = Book.Author;
-                book.ISBN =Book.ISBN;
+                var BookFromDb = await db.Book.FindAsync(Book.Id);
+                BookFromDb.Name = Book.Name;
+                BookFromDb.Author = Book.Author;
+                BookFromDb.ISBN =Book.ISBN;
+
                 await db.SaveChangesAsync();
 
                 return RedirectToPage("Index");
